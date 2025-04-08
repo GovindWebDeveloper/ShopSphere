@@ -1,17 +1,16 @@
-import { Form, Input, Select, Upload, Button, message } from "antd";
+import { Form, Input, Select, Upload, Button, message, Row, Col } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
+
 const { TextArea } = Input;
 
 const AddProduct = () => {
   const [fileList, setFileList] = useState([]);
 
-  // Handle file upload change
   const handleChange = ({ fileList }) => {
     setFileList(fileList);
   };
 
-  // Custom validation for min 4 images
   const validateMinImages = () => {
     if (fileList.length < 4) {
       return Promise.reject(new Error("You must upload at least 4 images!"));
@@ -20,135 +19,111 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
-      <h2 style={{ marginLeft: "1.5em" }}>Add Product</h2>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          marginTop: "1em",
-        }}
-      >
+    <div style={{ padding: "20px" }}>
+      <h2 style={{ marginBottom: "1em" }}>Add Product</h2>
+      <Row gutter={[24, 24]}>
         {/* Left Form */}
-        <div
-          style={{
-            width: "45%",
-            borderRadius: "10px",
-            padding: "20px",
-            minHeight: "500px",
-            background: "#fff",
-            boxShadow: "0px 0px 10px grey",
-          }}
-        >
-          <Form>
-            <Form.Item
-              label={
-                <span style={{ fontSize: "15px", fontWeight: 600 }}>
-                  Product Name
-                </span>
-              }
-              layout="vertical"
-              required
-            >
-              <Input placeholder="Enter Product Name" />
-            </Form.Item>
-            <br />
-
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Col xs={24} md={12}>
+          <div
+            style={{
+              borderRadius: "10px",
+              padding: "20px",
+              minHeight: "500px",
+              background: "#fff",
+              boxShadow: "0px 0px 10px grey",
+            }}
+          >
+            <Form layout="vertical">
               <Form.Item
-                label={
-                  <span style={{ fontSize: "15px", fontWeight: 600 }}>
-                    Select Category
-                  </span>
-                }
-                layout="vertical"
-                required
-                style={{ width: "48%" }}
+                label="Product Name"
+                name="productName"
+                rules={[
+                  { required: true, message: "Please enter product name" },
+                ]}
               >
-                <Select
-                  placeholder="Select Category"
-                  options={[
-                    { value: "electronics", label: "Electronics" },
-                    { value: "men's clothing", label: "Men's Clothing" },
-                    { value: "women's clothing", label: "Women's Clothing" },
-                    { value: "jewelery", label: "Jewelery" },
-                  ]}
-                />
+                <Input placeholder="Enter Product Name" />
+              </Form.Item>
+
+              <Row gutter={16}>
+                <Col span={12}>
+                  <Form.Item
+                    label="Select Category"
+                    name="category"
+                    rules={[{ required: true, message: "Select category" }]}
+                  >
+                    <Select
+                      placeholder="Select Category"
+                      options={[
+                        { value: "electronics", label: "Electronics" },
+                        { value: "men's clothing", label: "Men's Clothing" },
+                        {
+                          value: "women's clothing",
+                          label: "Women's Clothing",
+                        },
+                        { value: "jewelery", label: "Jewelery" },
+                      ]}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Form.Item
+                    label="Select Brand"
+                    name="brand"
+                    rules={[{ required: true, message: "Select brand" }]}
+                  >
+                    <Select
+                      placeholder="Select Brand"
+                      options={[
+                        { value: "hp", label: "HP" },
+                        { value: "gucci", label: "Gucci" },
+                        { value: "siyaram", label: "Siyaram" },
+                        { value: "tanishq", label: "Tanishq" },
+                      ]}
+                    />
+                  </Form.Item>
+                </Col>
+              </Row>
+
+              <Form.Item
+                label="Price"
+                name="price"
+                rules={[{ required: true, message: "Enter price" }]}
+              >
+                <Input placeholder="Enter Price" />
               </Form.Item>
 
               <Form.Item
-                label={
-                  <span style={{ fontSize: "15px", fontWeight: 600 }}>
-                    Select Brand
-                  </span>
-                }
-                layout="vertical"
-                style={{ width: "48%" }}
-                required
+                label="Description"
+                name="description"
+                rules={[{ required: true, message: "Enter description" }]}
               >
-                <Select
-                  placeholder="Select Brand"
-                  options={[
-                    { value: "hp", label: "HP" },
-                    { value: "gucci", label: "Gucci" },
-                    { value: "siyaram", label: "Siyaram" },
-                    { value: "tanishq", label: "Tanishq" },
-                  ]}
+                <TextArea
+                  rows={4}
+                  maxLength={400}
+                  placeholder="Max 400 characters"
                 />
               </Form.Item>
-            </div>
-            <br />
-            <Form.Item
-              label={
-                <span style={{ fontSize: "15px", fontWeight: 600 }}>Price</span>
-              }
-              layout="vertical"
-              required
-            >
-              <Input placeholder="Enter Price" />
-            </Form.Item>
-            <br />
-            <Form.Item
-              label={
-                <span style={{ fontSize: "15px", fontWeight: 600 }}>
-                  Description
-                </span>
-              }
-              layout="vertical"
-              required
-            >
-              <TextArea
-                rows={4}
-                placeholder="Maximum Length is 200"
-                maxLength={400}
-              />
-            </Form.Item>
-          </Form>
-        </div>
+            </Form>
+          </div>
+        </Col>
 
         {/* Right Form - Image Upload */}
-        <div
-          style={{
-            width: "45%",
-            borderRadius: "10px",
-            padding: "20px",
-            minHeight: "500px",
-            background: "#fff",
-            boxShadow: "0px 0px 10px grey",
-          }}
-        >
-          <h3>Upload Product Images</h3>
-          <br />
-          <div>
-            <Form>
+        <Col xs={24} md={12}>
+          <div
+            style={{
+              borderRadius: "10px",
+              padding: "20px",
+              minHeight: "500px",
+              background: "#fff",
+              boxShadow: "0px 0px 10px grey",
+            }}
+          >
+            <h3>Upload Product Images</h3>
+            <Form layout="vertical">
               <Form.Item
                 label="Product Images"
                 name="images"
-                layout="vertical"
                 rules={[{ validator: validateMinImages }]}
-                required
               >
                 <Upload
                   multiple
@@ -158,26 +133,24 @@ const AddProduct = () => {
                   beforeUpload={() => false}
                 >
                   {fileList.length < 8 && (
-                    <div
-                      style={{
-                        fontSize: "18px",
-                        width: "120px",
-                        height: "200px",
-                      }}
-                    >
-                      {" "}
+                    <div>
                       <PlusOutlined
-                        style={{ fontSize: "32px", marginTop: 58 }}
-                      />{" "}
+                        style={{ fontSize: "32px", marginTop: 20 }}
+                      />
                       <div style={{ marginTop: 8 }}>Upload</div>
                     </div>
                   )}
                 </Upload>
               </Form.Item>
-              <div style={{ display: "flex", gap: "10px" }}>
-                <Button style={{ marginTop: "300px" }}>Cancel</Button>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  gap: "10px",
+                }}
+              >
+                <Button>Cancel</Button>
                 <Button
-                  style={{ marginTop: "300px" }}
                   type="primary"
                   disabled={fileList.length < 4}
                   onClick={() => message.success("Product added successfully!")}
@@ -187,8 +160,8 @@ const AddProduct = () => {
               </div>
             </Form>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </div>
   );
 };
