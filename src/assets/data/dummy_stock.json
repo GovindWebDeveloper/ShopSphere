@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "productName": "Men's Casual Shirt",
+    "category": "Men's Wear",
+    "stock": 120,
+    "sold": 30,
+    "restockLevel": 20,
+    "status": "In Stock"
+  },
+  {
+    "id": 2,
+    "productName": "Women's Denim Jacket",
+    "category": "Women's Wear",
+    "stock": 50,
+    "sold": 45,
+    "restockLevel": 10,
+    "status": "Low Stock"
+  },
+  {
+    "id": 3,
+    "productName": "Wireless Headphones",
+    "category": "Electronics",
+    "stock": 200,
+    "sold": 120,
+    "restockLevel": 30,
+    "status": "In Stock"
+  },
+  {
+    "id": 4,
+    "productName": "Smartphone - 128GB",
+    "category": "Electronics",
+    "stock": 15,
+    "sold": 140,
+    "restockLevel": 25,
+    "status": "Out of Stock"
+  },
+  {
+    "id": 5,
+    "productName": "Gold Plated Necklace",
+    "category": "Jewelry",
+    "stock": 75,
+    "sold": 50,
+    "restockLevel": 15,
+    "status": "In Stock"
+  },
+  {
+    "id": 6,
+    "productName": "Men's Running Shoes",
+    "category": "Men's Wear",
+    "stock": 30,
+    "sold": 60,
+    "restockLevel": 10,
+    "status": "Low Stock"
+  },
+  {
+    "id": 7,
+    "productName": "Gaming Laptop - 16GB RAM",
+    "category": "Electronics",
+    "stock": 5,
+    "sold": 25,
+    "restockLevel": 10,
+    "status": "Out of Stock"
+  },
+  {
+    "id": 8,
+    "productName": "Women's Handbag",
+    "category": "Women's Wear",
+    "stock": 85,
+    "sold": 40,
+    "restockLevel": 20,
+    "status": "In Stock"
+  }
+]
